@@ -1,6 +1,6 @@
-#PRINTER MONITOR — HP/TOSHIBA INK, TONER, PAPER + EMAILS
+# PRINTER MONITOR — HP/TOSHIBA INK, TONER, PAPER + EMAILS
 
-##INSTALL / UPDATE
+## INSTALL / UPDATE
 Extract all files to a permanent local folder such as C:\Tools\PrinterMonitor.
 When updating, replace package files but keep your existing JSON and encrypted
 credential files. Rerun setup to select the new email method and refresh tasks.
@@ -11,7 +11,7 @@ Double-click **run_printer_monitor.cmd** for a visible full-report check.
 Double-click **start_printer_monitor.cmd** for the menu / first-time setup.
 Manual CMD launchers pause so error messages stay visible.
 
-##SETUP
+## SETUP
 1. Press Enter to detect Python, or enter the actual **python.exe** path.
    A **printer_monitor.py** path is NOT a Python interpreter. Quoted interpreter
    paths are accepted. Setup requires Python 3.10+ and installs pysnmp if needed.
