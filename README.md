@@ -1,6 +1,6 @@
-PRINTER MONITOR — HP/TOSHIBA INK, TONER, PAPER + EMAILS
+#PRINTER MONITOR — HP/TOSHIBA INK, TONER, PAPER + EMAILS
 
-INSTALL / UPDATE
+##INSTALL / UPDATE
 Extract all files to a permanent local folder such as C:\Tools\PrinterMonitor.
 When updating, replace package files but keep your existing JSON and encrypted
 credential files. Rerun setup to select the new email method and refresh tasks.
@@ -11,7 +11,7 @@ Double-click **run_printer_monitor.cmd** for a visible full-report check.
 Double-click **start_printer_monitor.cmd** for the menu / first-time setup.
 Manual CMD launchers pause so error messages stay visible.
 
-SETUP
+##SETUP
 1. Press Enter to detect Python, or enter the actual **python.exe** path.
    A **printer_monitor.py** path is NOT a Python interpreter. Quoted interpreter
    paths are accepted. Setup requires Python 3.10+ and installs pysnmp if needed.
@@ -26,7 +26,7 @@ SETUP
 6. Setup submits a test email. Confirm inbox delivery before scheduling.
    It then submits the first actual levels report.
 
-# MSFT EMAIL: OPTION 1 — CLASSIC OUTLOOK
+### MSFT EMAIL: OPTION 1 — CLASSIC OUTLOOK
 Open classic desktop Outlook and sign in to your Western account first.
 Choose option 1 in setup. No SMTP server or domain password is requested.
 Setup installs pywin32 if needed. The monitor selects the exact sender account
@@ -39,7 +39,7 @@ If programmatic sending needs approval every time, unattended sending cannot
 be guaranteed; ask WTS about an approved relay. The package does not change
 Outlook security policies or bypass organizational controls.
 
-# OPTION 2 — STANDARD SMTP
+### OPTION 2 — STANDARD SMTP
 For providers that permit SMTP username/password or app-password login.
 Provide SMTP host, STARTTLS port (usually 587), sender and credentials.
 Credentials are Windows-encrypted for your Windows user and this computer.
@@ -47,14 +47,14 @@ Western documents OAuth2 for smtp.office365.com:587. This password mode does
 not implement OAuth2 and is not a solution to Western's 535 authentication error.
 Implicit TLS port 465 is not supported.
 
-# OPTION 3 — RELAY
+### OPTION 3 — RELAY
 Defaults to *mailserver*:*25*, without individual SMTP password authentication.
 STARTTLS is used if advertised. Some approved relays use an unencrypted local
 SMTP connection.
 Use a valid sender address that you own. No access request is submitted
 by this package; selecting this option does not grant relay permissions.
 
-# SCHEDULE / STARTUP
+### SCHEDULE / STARTUP
 Friday check: every Friday at 13:00 in the Windows computer's LOCAL TIMEZONE.
 Set the computer to Eastern Time for Ontario's 1 p.m.
   *Can be changed in .py config*
@@ -70,7 +70,7 @@ you sign in, regardless of the Friday low-only email policy. Keep files in their
 permanent folder: setup installs a shortcut, not a duplicate script. Startup
 means user sign-in rather than boot before sign-in.
 
-# MANAGE
+### MANAGE
 Run now: Start-ScheduledTask -TaskName 'Printer Monitor - Friday 1pm'
 Test email: powershell -NoProfile -ExecutionPolicy Bypass -File .\run_printer_monitor.ps1 -TestEmail
 Remove Friday task: Unregister-ScheduledTask -TaskName 'Printer Monitor - Friday 1pm'
@@ -79,7 +79,7 @@ Change settings: rerun setup_printer_schedule.cmd.
 Runtime log: printer_weekly.log. Setup failures: printer_setup_error.log.
 If a launcher fails, copy the exact error text left on screen.
 
-# PRINTER READINGS
+### PRINTER READINGS
 Ink/toner: SNMP supplies, direct XML/HTML endpoints, optional Toshiba capture.
 Paper: SNMP Printer-MIB input trays. Shows percentage / sheets when reported,
 EMPTY for zero, and paper-present/unknown when exact levels aren't available.
@@ -88,7 +88,7 @@ Background toner checks require working SNMP or a direct HTTP endpoint.
 Background paper checks require SNMP. The scheduled task cannot use browser
 packet capture. Unknown / unavailable readings are preserved and reported.
 
-# INTERACTIVE
+### INTERACTIVE
 python printer_monitor.py
 To use the optional original Toshiba capture fallback:
 python -m pip install scapy
@@ -96,12 +96,12 @@ python printer_monitor.py --check both --capture-toshiba
 Windows capture requires Npcap/capture permissions. HTTP capture cannot read
 HTTPS traffic. Refresh TopAccess if needed.
 
-# VALIDATION
+### VALIDATION
 Parsing, ranges, report policies, Outlook sender selection, missing-account
 refusal and SMTP TLS behavior passed mocked checks. No live emails were sent
 or printers scanned during development. Windows / Outlook COM and actual mail
 transport must be verified on your computer through setup and inbox receipt.
 
-# REFERENCES
+### REFERENCES
 Microsoft Outlook SendUsingAccount:
 https://learn.microsoft.com/en-us/office/vba/api/outlook.mailitem.sendusingaccount
